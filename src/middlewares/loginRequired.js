@@ -3,7 +3,6 @@ import User from '../models/User';
 
 export default async (req, res, next) => {
   const { authorization } = req.headers;
-  console.log('token', authorization);
 
   if (!authorization) {
     return res.status(401).json({
@@ -11,7 +10,6 @@ export default async (req, res, next) => {
     });
   }
   const [, token] = authorization.split(' ');
-  console.log('token', token);
 
   try {
     const dados = jwt.verify(token, process.env.TOKEN_SECRET);

@@ -4,7 +4,7 @@ class HomeController {
   async index(req, res) {
     try {
       const alunos = await Aluno.findAll();
-      return res.status(200).json({ alunos });
+      return res.status(200).json(alunos);
     } catch (e) {
       return res.status(400).json({
         erros: e.erros.map((err) => err.message),
