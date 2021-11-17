@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+i=>{
+	mport jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 export default async (req, res, next) => {

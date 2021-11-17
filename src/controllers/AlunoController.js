@@ -1,9 +1,18 @@
 import Aluno from '../models/Aluno';
+import Foto from '../models/Fotos';
 
 class HomeController {
   async index(req, res) {
     try {
-      const alunos = await Aluno.findAll();
+      const alunos = await Aluno.findAll({
+        attributes: ['id', 'nome', 'email', 'idade', 'peso', 'altura'],
+        order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+        include: {
+          model: Foto,
+          attributes: ['filename'],
+        },
+
+      });
       return res.status(200).json(alunos);
     } catch (e) {
       return res.status(400).json({
